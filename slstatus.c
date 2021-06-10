@@ -298,6 +298,7 @@ ip(const char *iface)
     }
     s = getnameinfo(ifa->ifa_addr, sizeof(struct sockaddr_in), host, NI_MAXHOST, NULL, 0, NI_NUMERICHOST);
     if ((strcmp(ifa->ifa_name, iface) == 0) && (ifa->ifa_addr->sa_family == AF_INET)) {
+      freeifaddrs(ifaddr);
       if (s != 0) {
         warnx("Failed to get IP address for interface %s", iface);
         return smprintf("%s", UNKNOWN_STR);
