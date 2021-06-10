@@ -46,7 +46,7 @@ static const struct arg args[] = {
 //{ wifi_essid,     "%s:",       "wlp4s0"},
 //{ wifi_perc,      "%s ",      "wlp4s0"},
 //{ ip,             "%s|",       "enp13s0"},
-  { ip,             "%s|",       "wlp7s0"},
+  { ip,             "%s|",       "ens5"},
   { cpu_perc,       "%sC|",    NULL },
   { ram_perc,       "%sM|",    NULL },
 //{ disk_free,      "%sGB|",    NULL },
