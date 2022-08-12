@@ -45,6 +45,7 @@ static const struct arg args[] = {
   { load_avg, "%s ",       NULL},
   { cpu_temp, "%s ",       NULL},
   { gpu_temp, "%s ",       NULL},
+  { disk_free_line, "%s ",       NULL},
 //{ wifi_essid,     "%s:",       "wlp4s0"},
 //{ wifi_perc,      "%s ",      "wlp4s0"},
   { ip,             "%s ",       "ens5"},
@@ -55,5 +56,5 @@ static const struct arg args[] = {
 //{ battery_state,  "%s ", "BAT1"},
 //{ vol_perc,       "%sV]", "/dev/mixer"},
   { weatherline,    "%s ",       NULL},
-  { datetime,       "%s ",      "%D %T" },
+  { datetime,       "%s",      "%D %T" },
 };

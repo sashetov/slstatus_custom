@@ -68,6 +68,7 @@ static char *wifi_essid(const char *iface);
 static char *weatherline();
 static char *cpu_temp();
 static char *gpu_temp();
+static char *disk_free_line();
 static void sighandler(const int signo);
 static void usage(const int eval);
 
@@ -803,6 +804,14 @@ gpu_temp()
 {
   char buf[BUFSIZ];
   cmd_to_singleline("gpu-temp 2>/dev/null", buf);
+  return smprintf("%s", buf);
+}
+
+static char *
+disk_free_line()
+{
+  char buf[BUFSIZ];
+  cmd_to_singleline("diskfreeline 2>/dev/null", buf);
   return smprintf("%s", buf);
 }
 
