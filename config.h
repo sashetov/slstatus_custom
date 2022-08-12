@@ -41,7 +41,6 @@
 static const struct arg args[] = {
   /* function  format        argument */
   { hostname,       "%s ",     NULL},
-  { weatherline,    "%s ",       NULL},
 //{ kernel_release, "%s ",       NULL},
   { load_avg, "%s ",       NULL},
   { cpu_temp, "%s ",       NULL},
@@ -55,5 +54,6 @@ static const struct arg args[] = {
 //{ battery_perc,   "B:%s:", "BAT1"},
 //{ battery_state,  "%s ", "BAT1"},
 //{ vol_perc,       "%sV]", "/dev/mixer"},
+  { weatherline,    "%s ",       NULL},
   { datetime,       "%s ",      "%D %T" },
 };
