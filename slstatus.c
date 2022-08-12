@@ -32,7 +32,7 @@ struct arg {
   const char *fmt;
   const char *args;
 };
-
+void cmd_to_singleline(char *, char*);
 static char *smprintf(const char *fmt, ...);
 static char *battery_perc(const char *bat);
 static char *battery_state(const char *bat);
@@ -65,6 +65,9 @@ static char *username(void);
 static char *vol_perc(const char *card);
 static char *wifi_perc(const char *iface);
 static char *wifi_essid(const char *iface);
+static char *weatherline();
+static char *cpu_temp();
+static char *gpu_temp();
 static void sighandler(const int signo);
 static void usage(const int eval);
 
@@ -75,6 +78,27 @@ static unsigned short int dflag, oflag;
 static Display *dpy;
 
 #include "config.h"
+
+void
+cmd_to_singleline(char * cmd, char * buf)
+{
+  FILE *ptr;
+  if ((ptr = popen(cmd, "r")) != NULL)
+  {
+    int found_nl = 0;
+    size_t byte_count = fread(buf, 1, BUFSIZ - 1, ptr);
+    for(int i =0; i < byte_count; i++)
+    {
+      if (buf[i] == '\n')
+      {
+        buf[i] = 0;
+        break;
+      }
+    }
+    if(!found_nl) buf[byte_count] = 0;
+  }
+  (void) pclose(ptr);
+}
 
 static char *
 smprintf(const char *fmt, ...)
@@ -756,6 +780,30 @@ wifi_essid(const char *iface)
     return smprintf("%s", UNKNOWN_STR);
   else
     return smprintf("%s", (char *)wreq.u.essid.pointer);
+}
+
+static char *
+weatherline()
+{
+  char buf[BUFSIZ];
+  cmd_to_singleline("weatherline 2>/dev/null", buf);
+  return smprintf("%s", buf);
+}
+
+static char *
+cpu_temp()
+{
+  char buf[BUFSIZ];
+  cmd_to_singleline("cpu-temp 2>/dev/null", buf);
+  return smprintf("%s", buf);
+}
+
+static char *
+gpu_temp()
+{
+  char buf[BUFSIZ];
+  cmd_to_singleline("gpu-temp 2>/dev/null", buf);
+  return smprintf("%s", buf);
 }
 
 static void

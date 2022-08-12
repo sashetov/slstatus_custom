@@ -40,18 +40,20 @@
 - wifi_essid (wifi essid) [argument: wifi card interface name] */
 static const struct arg args[] = {
   /* function  format        argument */
-  { hostname,       "[%s|",     NULL},
+  { hostname,       "%s ",     NULL},
+  { weatherline,    "%s ",       NULL},
 //{ kernel_release, "%s ",       NULL},
   { load_avg, "%s ",       NULL},
+  { cpu_temp, "%s ",       NULL},
+  { gpu_temp, "%s ",       NULL},
 //{ wifi_essid,     "%s:",       "wlp4s0"},
 //{ wifi_perc,      "%s ",      "wlp4s0"},
-//{ ip,             "%s|",       "enp13s0"},
-  { ip,             "%s|",       "ens5"},
-  { cpu_perc,       "%sC|",    NULL },
-  { ram_perc,       "%sM|",    NULL },
-//{ disk_free,      "%sGB|",    NULL },
+  { ip,             "%s ",       "ens5"},
+  { cpu_perc,       "%sC ",    NULL },
+  { ram_perc,       "%sM ",    NULL },
+//{ disk_free,      "%sGB ",    NULL },
 //{ battery_perc,   "B:%s:", "BAT1"},
 //{ battery_state,  "%s ", "BAT1"},
 //{ vol_perc,       "%sV]", "/dev/mixer"},
-  { datetime,       "%s]",      "%D|%T" },
+  { datetime,       "%s ",      "%D %T" },
 };
